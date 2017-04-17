@@ -1,10 +1,32 @@
 import { Component } from '@angular/core';
+import { JsonpModule, Jsonp, Response, } from '@angular/http';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    moduleId: module.id,
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css']
 })
+
 export class AppComponent {
-  title = 'app works!';
-}
+    title = 'Welcome to InstagramSearch';
+    link = 'https://api.instagram.com/v1/tags/';
+    jsonp: Jsonp;
+    image_objs = [];
+
+    constructor(jsonp: Jsonp) {
+        this.jsonp = jsonp;
+    }
+    performSearch(searchTerm: HTMLInputElement): void {
+    	if (searchTerm.value) {
+        
+	        var apiLink = this.link + searchTerm.value + '/media/recent?callback=JSONP_CALLBACK&access_token=XXXACCESS_TOKENXXXX';
+
+	        this.jsonp.request(apiLink)
+	            .subscribe((res: Response) => {
+	                  this.image_objs = res.json().data;
+	            });
+        }
+    }
+};
