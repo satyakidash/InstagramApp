@@ -18,10 +18,10 @@ export class AppComponent {
     constructor(jsonp: Jsonp) {
         this.jsonp = jsonp;
     }
-    performSearch(searchTerm: HTMLInputElement): void {
+    instagramTagSearch(searchTerm: HTMLInputElement): void {
     	if (searchTerm.value) {
         
-	        var apiLink = this.link + searchTerm.value + '/media/recent?callback=JSONP_CALLBACK&access_token=XXXACCESS_TOKENXXXX';
+	        var apiLink = this.link + searchTerm.value + '/media/recent?callback=JSONP_CALLBACK&access_token=xxxxxACESS_TOKENxxxxx';
 
 	        this.jsonp.request(apiLink)
 	            .subscribe((res: Response) => {
