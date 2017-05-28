@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { JsonpModule, Jsonp, Response, } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { Jsonp, Response, } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 
 
 
@@ -14,12 +18,12 @@ export class InstagramService{
 		this.jsonp = jsonp;
 	}
 
-	instagramTagSearch(searchTerm: HTMLInputElement) {
-    	if (searchTerm.value) {
+	instagramTagSearch(searchTerm) {
+    	if (searchTerm) {
         
-	        var apiLink = this.link + searchTerm.value + '/media/recent?callback=JSONP_CALLBACK&access_token=1462982210.144690a.af067e4cc76d469d8e80f58b47904ea2';
+	        var apiLink = this.link + searchTerm + '/media/recent?callback=JSONP_CALLBACK&access_token=1462982210.144690a.af067e4cc76d469d8e80f58b47904ea2';
 
-	        // this.jsonp.request(apiLink)
+	        // return this.jsonp.request(apiLink)
 	        //     .subscribe((res: Response) => {
 	        //             return res.json().data;
 	        //     });
@@ -28,4 +32,4 @@ export class InstagramService{
 
         }
     }
-}
+   }
